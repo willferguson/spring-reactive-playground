@@ -23,8 +23,9 @@ public class SimpleRESTController {
 
     @RequestMapping(path = "/sse", method = RequestMethod.GET, produces = "text/event-stream")
     public Flux<String> fetchSSE() {
-        return Flux.intervalMillis(500)
-                .map(i -> Long.toString(i));
+        return Flux.range(1, 10)
+                .delayMillis(500)
+                .map(Long::toString);
     }
 
 }
